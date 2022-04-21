@@ -90,13 +90,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { cnpj } = context.params;
   
   const getApiResponse = async (cnpj) => {
-    await fetch(`${process.env.END_POINT}`, {
+    const data = await fetch(`${process.env.END_POINT}`, {
       method: "POST",
       headers: {'Content-Type': 'application/json'}, 
       body: JSON.stringify({'cnpj':`${cnpj}`})
     }).then(res => {
       return res.json() 
     });
+
+    return data
   }
 
   const response = await getApiResponse(cnpj)
