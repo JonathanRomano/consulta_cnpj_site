@@ -1,8 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ReactLoading from 'react-loading'
-import { json } from 'stream/consumers';
 import styles from '../../styles/Home.module.css'
 
 export default function infoPage({ infoObject }) {
@@ -80,7 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: [
       {
         params: {
-          cnpj: ''
+          cnpj: '78413325001750'
         }
       }
     ],
