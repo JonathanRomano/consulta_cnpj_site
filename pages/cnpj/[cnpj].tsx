@@ -89,14 +89,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { cnpj } = context.params;
   
-  const response = await fetch(`${process.env.END_POINT}`, {
-    method: "POST",
-    headers: {'Content-Type': 'application/json'}, 
-    body: JSON.stringify({'cnpj':`${cnpj}`})
-  }).then(res => {
-    return res.json() 
-  });
+  const getApiResponse = async (cnpj) => {
+    await fetch(`${process.env.END_POINT}`, {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'}, 
+      body: JSON.stringify({'cnpj':`${cnpj}`})
+    }).then(res => {
+      return res.json() 
+    });
+  }
 
+  const response = await getApiResponse(cnpj)
+  
   return {
     props: {
       infoObject: response,
