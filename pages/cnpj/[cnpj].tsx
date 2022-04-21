@@ -2,12 +2,11 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ReactLoading from 'react-loading'
+import { json } from 'stream/consumers';
 import styles from '../../styles/Home.module.css'
 
-export default async function infoPage({ infoObject }) {
-  const Router = useRouter();
-  
-  if (Router.isFallback) {
+export default function infoPage({ infoObject }) {
+  if (!infoObject) {
     return<div className={styles.fallbackDiv}>
         <ReactLoading className={styles.loading} type='spinningBubbles' color='black'/>
     </div> 
@@ -61,7 +60,7 @@ export default async function infoPage({ infoObject }) {
 
   return (
     <div className={styles.containerCnpjPage}>
-      <h3 className={styles.alert}> Dados apenas para consulta, não possuem valor legal!</h3>
+      <p className={styles.alert}>ATENÇÃO: dados apenas para consulta, não possuem valor legal!</p>
       <h1>Informações gerais</h1>
       {infoObject['dados gerais'].map(info => <div>
         {
@@ -92,21 +91,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { cnpj } = context.params;
   
-  const teste = await fetch(process.env.END_POINT, {
+  const response = await fetch("https://d9d7-45-238-253-194.sa.ngrok.io/empresaFacil", {
     method: "POST",
     headers: {'Content-Type': 'application/json'}, 
     body: JSON.stringify({'cnpj':`${cnpj}`})
   }).then(res => {
-    const response = res
-    return response.json()
+    return res.json() 
   });
-
-  console.log(teste)
-
 
   return {
     props: {
-      infoObject: teste,
+      infoObject: response,
     }
   }
 }
