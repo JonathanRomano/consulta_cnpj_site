@@ -89,7 +89,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { cnpj } = context.params;
   
-  const response = await fetch("https://d9d7-45-238-253-194.sa.ngrok.io/empresaFacil", {
+  const response = await fetch(`${process.env.END_POINT}`, {
     method: "POST",
     headers: {'Content-Type': 'application/json'}, 
     body: JSON.stringify({'cnpj':`${cnpj}`})
