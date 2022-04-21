@@ -5,9 +5,9 @@ import ReactLoading from 'react-loading'
 import styles from '../../styles/Home.module.css'
 
 export default async function infoPage({ infoObject }) {
-  const { isFallback } = useRouter();
+  const Router = useRouter();
   
-  if (isFallback) {
+  if (Router.isFallback) {
     return<div className={styles.fallbackDiv}>
         <ReactLoading className={styles.loading} type='spinningBubbles' color='black'/>
     </div> 
