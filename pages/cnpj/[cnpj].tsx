@@ -61,6 +61,7 @@ export default function infoPage({ infoObject }) {
 
   return (
     <div className={styles.containerCnpjPage}>
+      <h3 className={styles.alert}> Dados apenas para consulta, não possuem valor legal!</h3>
       <h1>Informações gerais</h1>
       {infoObject['dados gerais'].map(info => <div>
         {

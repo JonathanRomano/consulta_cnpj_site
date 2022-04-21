@@ -36,6 +36,10 @@
   padding: 2vw 10vw;
 }
 
+.alert{
+  color: red
+}
+
 .socioNameBox {
   display: flex;
   justify-content: space-between;
