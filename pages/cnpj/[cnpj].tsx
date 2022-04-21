@@ -49,7 +49,7 @@ export default function infoPage({ infoObject }) {
       <div className={styles.dataBox}>
         
           {
-            socio['data'].map(data => <div className={styles.data}>
+            socio['data'].map(data => <div className={styles.data} key={`${data['type']}`}>
               {`${data['type']}: ${data['value']}`}
             </div>)
           }
@@ -62,13 +62,13 @@ export default function infoPage({ infoObject }) {
     <div className={styles.containerCnpjPage}>
       <p className={styles.alert}>ATENÇÃO: dados apenas para consulta, não possuem valor legal!</p>
       <h1>Informações gerais</h1>
-      {infoObject['dados gerais'].map(info => <div>
+      {infoObject['dados gerais'].map(info => <div key={`${info['type']}`}>
         {
           info['type'] + ': ' + info['value']
         }<hr/>
       </div>)}
       <h1>Socios</h1>
-      {infoObject['socios'].map(socio => <SocioView socio={socio}/>)}
+      {infoObject['socios'].map(socio => <SocioView socio={socio} key={`${socio['name']}`}/>)}
 
     </div>
   )
