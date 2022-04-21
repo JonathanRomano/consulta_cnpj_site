@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ReactLoading from 'react-loading'
 import styles from '../../styles/Home.module.css'
 
-export default function infoPage({ infoObject }) {
+export default async function infoPage({ infoObject }) {
   const { isFallback } = useRouter();
   
   if (isFallback) {
