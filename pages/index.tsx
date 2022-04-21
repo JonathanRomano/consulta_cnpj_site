@@ -8,7 +8,7 @@ export default function Home() {
 
 		e.preventDefault()
 
-		const input_cnpj = document.getElementById('input_cnpj')
+		const input_cnpj = document.getElementById('input_cnpj') as HTMLInputElement
 		const cnpj = input_cnpj.value
 
 		window.open(`/cnpj/${cnpj}`,'_self')
